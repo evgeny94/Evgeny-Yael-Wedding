@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding: 10px;
+
         }
         .container {
             display: flex;
@@ -64,7 +64,7 @@
             border-radius: 5px;
             height:500px;
         }
-        @media (max-width:760px){
+        @media (max-width:680px){
             body {
                 width: 100vw;
                 height: 100vh;
@@ -73,24 +73,30 @@
                 width: 95%;
                 height: 100%;
                 flex-direction: column;
-                justify-content: space-between;
+
             }
             .left-container, .right-container {
                 flex-direction: row;
                 justify-content: space-between;
-                margin: 10px;
+                margin-bottom: 10px;
+                gap: 0;
+
             }
             .videos-container {
+                flex: 0.25;
                 flex-direction: row;
-                justify-content: space-between;
+                align-items: center;
+                justify-content: center;
                 margin: 10px;
+                width: 100%;
             }
             .image {
-                width: 30%;
-                height: auto;
+                width: 25%;
+                height: 100%;
             }
             iframe {
-                height:93%;
+                height:85%;
+                width: 100%;
             }
             h1 {
                 font-size: 24px;
@@ -171,7 +177,6 @@
                 leftContainer.appendChild(image);
 
                 // Trigger reflow
-                image.offsetHeight;
                 setTimeout(() => {
                     image.style.opacity = '0.8'; // Fade in the new image
                 }, 50); // Delay to ensure opacity transition starts after appending the image
@@ -193,7 +198,6 @@
                 rightContainer.appendChild(image);
 
                 // Trigger reflow
-                image.offsetHeight;
                 setTimeout(() => {
                     image.style.opacity = '0.8'; // Fade in the new image
                 }, 50); // Delay to ensure opacity transition starts after appending the image
