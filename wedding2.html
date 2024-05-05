@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yael & Evgeny 12.7.23 - Wedding Videos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: auto;
+            height: auto;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+        }
+        .left-container, .right-container {
+            width: 100%;
+            flex: 1;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-direction: column;
+        }
+        .image {
+            height: 33%;
+            border-radius: 5px;
+            flex-grow: 1;
+            object-fit: cover;
+            transition: opacity 4s ease; /* Smooth transition */
+            margin: 0 10px;
+        }
+        .videos-container {
+            flex: 2;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+            margin-top: 0;
+        }
+        video {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Yael & Evgeny 12.7.23</h1>
+    <div class="container">
+        <div class="left-container"></div>
+        <div class="videos-container">
+            <div class="video">
+                <h2>Highlight (Short video)</h2>
+                <video controls>
+                    <source src="Yael & Evgeny - Highlight Movie.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video">
+                <h2>Full Wedding</h2>
+                <video controls>
+                    <source src="Yael & Evgeny - Full movie 12.7.23-001.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video">
+                <h2>Ceremony</h2>
+                <video controls>
+                    <source src="Yael & Evgeny - Hupa Full Movie_1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="right-container"></div>
+    </div>
+
+    <script>
+        // Function to get a random integer between two values
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Function to set background image for a container
+        function setBackgroundImage(container, imagePath) {
+            container.style.backgroundImage = `url('${imagePath}')`;
+        }
+
+        // Get references to containers
+        const leftContainer = document.querySelector('.left-container');
+        const rightContainer = document.querySelector('.right-container');
+        const totalImages = 25; // Total number of images available
+
+        // Calculate the number of images to place on each side
+        const numImagesPerSide = 3;
+
+        // Load random images initially
+        updateImages();
+        // Function to update images every 3.5 seconds
+        setInterval(updateImages, 8001);
+
+        // Function to update images
+        function updateImages() {
+            // Clear previous images
+            leftContainer.innerHTML = '';
+            rightContainer.innerHTML = '';
+
+            // Array to store used image numbers
+            const usedImageNumbers = [];
+
+            // Load random images for left container
+            for (let i = 0; i < numImagesPerSide; i++) {
+                let randomNumber;
+                do {
+                    randomNumber = getRandomInt(1, totalImages);
+                } while (usedImageNumbers.includes(randomNumber)); // Make sure image hasn't been used
+                usedImageNumbers.push(randomNumber);
+
+                // Create and set background for image
+                const image = new Image();
+                image.src = `pics/${randomNumber}.jpg`;
+                image.classList.add('image');
+                image.style.opacity = '0'; // Set opacity to 0 for the new image
+                leftContainer.appendChild(image);
+
+                // Trigger reflow
+                image.offsetHeight;
+                setTimeout(() => {
+                    image.style.opacity = '0.8'; // Fade in the new image
+                }, 50); // Delay to ensure opacity transition starts after appending the image
+            }
+
+            // Load random images for right container
+            for (let i = 0; i < numImagesPerSide; i++) {
+                let randomNumber;
+                do {
+                    randomNumber = getRandomInt(1, totalImages);
+                } while (usedImageNumbers.includes(randomNumber)); // Make sure image hasn't been used
+                usedImageNumbers.push(randomNumber);
+
+                // Create and set background for image
+                const image = new Image();
+                image.src = `pics/${randomNumber}.jpg`;
+                image.classList.add('image');
+                image.style.opacity = '0'; // Set opacity to 0 for the new image
+                rightContainer.appendChild(image);
+
+                // Trigger reflow
+                image.offsetHeight;
+                setTimeout(() => {
+                    image.style.opacity = '0.8'; // Fade in the new image
+                }, 50); // Delay to ensure opacity transition starts after appending the image
+            }
+
+            // Fade out images after a delay
+            setTimeout(() => {
+                fadeOutImages(leftContainer);
+                fadeOutImages(rightContainer);
+            }, 4000); // Delay before fading out images
+        }
+
+        // Function to fade out images
+        function fadeOutImages(container) {
+            const images = container.querySelectorAll('.image');
+            images.forEach(image => {
+                image.style.opacity = '0';
+            });
+        }
+    </script>
+</body>
+</html>
