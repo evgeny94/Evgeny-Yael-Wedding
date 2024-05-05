@@ -64,6 +64,28 @@
             border-radius: 5px;
             height:500px;
         }
+        @media (max-width:760px){
+            .container {
+                width: 95vw;
+                flex-direction: column;
+            }
+            .left-container, .right-container, .videos-container {
+                flex-direction: row;
+                height: 100%;
+                gap: 10px;
+                justify-content: space-between;
+            }
+            iframe {
+                width: 100%;
+                border-radius: 5px;
+                height:250px;
+            }
+            .image {
+                height: 200px;
+                width: 200px;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -72,7 +94,7 @@
         <div class="left-container"></div>
         <div class="videos-container">
             <div class="video">
-                <h2>Highlight (Short video)</h2>
+                <h2>Highlights</h2>
                 <iframe src="https://drive.google.com/file/d/1mbXRbGwQ_a3n4pvXnTXzSt8W5Y4jzYF8/preview" allow="autoplay"></iframe>
             </div>
             <div class="video">
