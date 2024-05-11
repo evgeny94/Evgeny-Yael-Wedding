@@ -10,62 +10,74 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
+
         }
         .container {
-            width: auto;
-            height: auto;
-            margin: auto;
-            padding: 20px;
             display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
         .left-container, .right-container {
-            width: 100%;
-            flex: 1;
+            flex: 0.5;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: space-between;
             background-size: cover;
             background-repeat: no-repeat;
             position: relative;
             overflow: hidden;
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            flex-direction: column;
-        }
-        .image {
-            height: 33%;
-            border-radius: 5px;
-            flex-grow: 1;
-            object-fit: cover;
-            transition: opacity 4s ease; /* Smooth transition */
-            margin: 0 10px;
         }
         .videos-container {
-            flex: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
             width: 100%;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 10px;
         }
+        .image {
+            height: 330px;
+            border-radius: 5px;
+            flex-grow: 1;
+            object-fit: cover;
+            transition: opacity 4s ease; /* Smooth transition */
+            margin: 0 10px;
+        }
+        
         h1 {
             font-size: 32px;
             color: #333;
-            margin-bottom: 20px;
             text-align: center;
         }
         h2 {
             font-size: 24px;
             color: #333;
+            margin: 0;
             margin-bottom: 5px;
-            margin-top: 0;
         }
-        video {
+        iframe {
             width: 100%;
             border-radius: 5px;
+            height:500px;
         }
-        @media (max-width:480px){
-            .left-container, .right-container, .videos-container {
-            flex-direction: row;
+        @media (max-width:680px){
+            iframe {
+                height: 85%;
+                width: 100%;
+            }
+            .image {
+                height: 33.33%;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 18px;
             }
         }
     </style>
@@ -76,25 +88,16 @@
         <div class="left-container"></div>
         <div class="videos-container">
             <div class="video">
-                <h2>Highlight (Short video)</h2>
-                <video controls>
-                    <source src="Yael & Evgeny - Highlight Movie.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <h2>Highlights</h2>
+                <iframe src="https://drive.google.com/file/d/1mbXRbGwQ_a3n4pvXnTXzSt8W5Y4jzYF8/preview" allow="autoplay"></iframe>
             </div>
             <div class="video">
                 <h2>Full Wedding</h2>
-                <video controls>
-                    <source src="Yael & Evgeny - Full movie 12.7.23-001.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="https://drive.google.com/file/d/1AyE6YsQHIzi1ZDY6W3naybWDEzPOEy4l/preview" allow="autoplay"></iframe>            
             </div>
             <div class="video">
                 <h2>Ceremony</h2>
-                <video controls>
-                    <source src="Yael & Evgeny - Hupa Full Movie_1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="https://drive.google.com/file/d/1GeGQPyIkbEcYNe0KS-S8rkryITRkizM7/preview" allow="autoplay"></iframe>
             </div>
         </div>
         <div class="right-container"></div>
@@ -149,7 +152,6 @@
                 leftContainer.appendChild(image);
 
                 // Trigger reflow
-                image.offsetHeight;
                 setTimeout(() => {
                     image.style.opacity = '0.8'; // Fade in the new image
                 }, 50); // Delay to ensure opacity transition starts after appending the image
@@ -171,7 +173,6 @@
                 rightContainer.appendChild(image);
 
                 // Trigger reflow
-                image.offsetHeight;
                 setTimeout(() => {
                     image.style.opacity = '0.8'; // Fade in the new image
                 }, 50); // Delay to ensure opacity transition starts after appending the image
